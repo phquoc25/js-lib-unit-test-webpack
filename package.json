@@ -1,0 +1,11 @@
+{
+  "name": "js-unit-test",
+  "version": "1.0.0",
+  "main": "index.js",
+  "repository": "https://github.com/phquoc25/js-unit-test.git",
+  "author": "phquoc25",
+  "license": "MIT",
+  "devDependencies": {
+    "jasmine": "^4.5.0"
+  }
+}

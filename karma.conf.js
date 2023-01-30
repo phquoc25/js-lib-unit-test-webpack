@@ -51,7 +51,11 @@ module.exports = function(config) {
             // include code
             test: /\.js$/,
             // exclude tests from coverage report
-            exclude: /\.(spec|test)\.js$/,
+            exclude: [
+              /\.(spec|test)\.js$/,
+              /node_modules/,
+              /test-index.js/
+            ],
             use: [
               {
                 loader: "babel-loader",

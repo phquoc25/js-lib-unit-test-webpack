@@ -1,5 +1,5 @@
 import { calculatePrice } from "./price-calculator";
-import { Product } from "./product";
+import { Product } from "../product";
 
 describe('price-calculator', () => {
     describe('#calculatePrice', () => {

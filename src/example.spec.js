@@ -1,5 +1,8 @@
+import { calculatePrice } from "./price-calculator";
+
 describe('my first test', () => {
-    it('shoudl fail the test', () => {
+    it('should fail the test', () => {
+        calculatePrice();
         fail('hehe');
     });
 });

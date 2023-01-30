@@ -16,7 +16,8 @@ const config = {
             type: 'umd'
         },
         clean: true
-    }
+    },
+    devtool: 'inline-source-map'
 };
 
 module.exports = () => {

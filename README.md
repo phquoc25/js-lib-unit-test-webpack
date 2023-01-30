@@ -8,6 +8,10 @@ yarn add -D karma-jasmine karma-chrome-launcher jasmine-core
 npm install -g karma-cli
 karmar init
 ```
+
+# Using webpack to bundle the source codes
+
+
 # Troubleshooting
 ## Issue 1
 You need to include some adapter that implements __karma__.start method!

@@ -10,17 +10,18 @@ module.exports = function(config) {
 
     // frameworks to use
     // available frameworks: https://www.npmjs.com/search?q=keywords:karma-adapter
-    frameworks: ['jasmine'],
+    frameworks: ['jasmine', 'webpack'],
 
     plugins: [
-      require('karma-jasmine'),
-      require('karma-chrome-launcher')
+      'karma-webpack',
+      'karma-sourcemap-loader',
+      'karma-jasmine',
+      'karma-chrome-launcher'
     ],
-
 
     // list of files / patterns to load in the browser
     files: [
-      'src/**/*.js'
+      { pattern: 'src/test-index.js', watched: false }
     ],
 
 
@@ -32,6 +33,16 @@ module.exports = function(config) {
     // preprocess matching files before serving them to the browser
     // available preprocessors: https://www.npmjs.com/search?q=keywords:karma-preprocessor
     preprocessors: {
+      // add webpack as preprocessor
+      'src/test-index.js': [ 'webpack', 'sourcemap' ]
+    },
+
+    webpack: {
+      // karma watches the test entry points
+      // Do NOT specify the entry option
+      // webpack watches dependencies
+
+      // webpack configuration
     },
 
 

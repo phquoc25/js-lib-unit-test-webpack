@@ -1,16 +1,33 @@
 {
-  "name": "js-unit-test",
+  "name": "my-webpack-project",
   "version": "1.0.0",
   "author": "phquoc25",
   "license": "MIT",
+  "private": true,
   "scripts": {
     "test:ci": "karma start",
-    "test:debug": "karma start --no-single-run --browsers Chrome"
+    "test:debug": "karma start --no-single-run --browsers Chrome",
+    "build": "webpack --mode=production --node-env=production",
+    "build:dev": "webpack --mode=development",
+    "build:prod": "webpack --mode=production --node-env=production",
+    "watch": "webpack --watch",
+    "serve": "webpack serve"
   },
   "devDependencies": {
+    "@babel/core": "^7.20.12",
+    "@babel/preset-env": "^7.20.2",
+    "@webpack-cli/generators": "^3.0.1",
+    "babel-loader": "^9.1.2",
+    "html-webpack-plugin": "^5.5.0",
     "jasmine-core": "^4.5.0",
     "karma": "^6.4.1",
     "karma-chrome-launcher": "^3.1.1",
-    "karma-jasmine": "^5.1.0"
-  }
+    "karma-jasmine": "^5.1.0",
+    "karma-sourcemap-loader": "^0.3.8",
+    "karma-webpack": "^5.0.0",
+    "webpack": "^5.75.0",
+    "webpack-cli": "^5.0.1",
+    "webpack-dev-server": "^4.11.1"
+  },
+  "description": "My webpack project"
 }

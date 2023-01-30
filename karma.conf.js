@@ -13,10 +13,11 @@ module.exports = function(config) {
     frameworks: ['jasmine', 'webpack'],
 
     plugins: [
-      'karma-webpack',
-      'karma-sourcemap-loader',
-      'karma-jasmine',
-      'karma-chrome-launcher'
+      require('karma-jasmine'),
+      require('karma-webpack'),
+      require('karma-sourcemap-loader'),
+      require('karma-chrome-launcher'),
+      require('karma-coverage'),
     ],
 
     // list of files / patterns to load in the browser
@@ -34,7 +35,7 @@ module.exports = function(config) {
     // available preprocessors: https://www.npmjs.com/search?q=keywords:karma-preprocessor
     preprocessors: {
       // add webpack as preprocessor
-      'src/test-index.js': [ 'webpack', 'sourcemap' ]
+      'src/test-index.js': [ 'webpack', 'sourcemap'],
     },
 
     webpack: {
@@ -43,14 +44,41 @@ module.exports = function(config) {
       // webpack watches dependencies
 
       // webpack configuration
+      // Config to see source code in the coverage report
+      module: {
+        rules: [
+          {
+            // include code
+            test: /\.js$/,
+            // exclude tests from coverage report
+            exclude: /\.(spec|test)\.js$/,
+            use: [
+              {
+                loader: "babel-loader",
+                options: {
+                  plugins: ["istanbul"]
+                }
+              }
+            ]
+          }
+        ]
+      },
     },
 
 
     // test results reporter to use
     // possible values: 'dots', 'progress'
     // available reporters: https://www.npmjs.com/search?q=keywords:karma-reporter
-    reporters: ['progress'],
+    reporters: ['progress', 'coverage'],
 
+    // optionally, configure the reporter
+    coverageReporter: {
+      dir : 'coverage/',
+      reporters: [
+        { type: 'html', subdir: 'report-html' },
+        { type: 'text-summary'},
+      ]
+    },
 
     // web server port
     port: 9876,

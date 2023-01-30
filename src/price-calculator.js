@@ -1,6 +1,7 @@
-import { Product } from "./product";
+export function calculatePrice(products, promotionService) {
+    return products.map((product) => getProductPrice(promotionService, product)).sum();
+}
 
-export function calculatePrice() {
-    const banana = new Product('banana', 20000);
-    console.log(banana);
+function getProductPrice(promotionService, product) {
+    return promotionService.getDiscount(product.code) * product.price;
 }

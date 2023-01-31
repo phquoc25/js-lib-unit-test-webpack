@@ -8,11 +8,11 @@ const isProduction = process.env.NODE_ENV == 'production';
 const config = {
     entry: './src/index.js',
     output: {
-        filename: 'price-calculator.js', 
+        filename: 'price-cal.js', 
         path: path.resolve(__dirname, 'dist'),
         globalObject: 'this',
         library: {
-            name: 'priceCalculator',
+            name: 'PriceCal',
             type: 'umd'
         },
         clean: true

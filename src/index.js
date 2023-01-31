@@ -1,2 +1,5 @@
-import { calculatePrice as c} from "./price-calculator";
-export const calculatePrice = c;
+export * from "./calculator/price-calculator";
+export * from "./promotion/promotion.service"
+export function sayHello() {
+    console.log('Hi there!!!!');
+}

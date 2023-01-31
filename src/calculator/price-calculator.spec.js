@@ -1,7 +1,14 @@
-import { calculatePrice } from "./price-calculator";
+import { PriceCalculator } from "./price-calculator";
 import { Product } from "../product";
 
-describe('price-calculator', () => {
+describe('PriceCalculator', () => {
+    let promotionService;
+    let priceCalculator;
+    beforeEach(() => {
+        promotionService = jasmine.createSpyObj('PromotionService', ['getDiscount']);
+        priceCalculator = new PriceCalculator(promotionService);
+    });
+
     describe('#calculatePrice', () => {
         it('should return sum of the product price after the discount', () => {
             // GIVEN
@@ -14,13 +21,12 @@ describe('price-calculator', () => {
             const products = [banana, potato];
             const expectedPrice = 35000;
 
-            const promotionService = jasmine.createSpyObj('PromotionService', ['getDiscount']);
             promotionService.getDiscount
             .withArgs(bananaCode).and.returnValue(bananaDiscount)
             .withArgs(potatoCode).and.returnValue(potatoDiscount);
             
             // WHEN
-            const price = calculatePrice(products, promotionService);
+            const price = priceCalculator.calculatePrice(products);
             // THEN
             expect(promotionService.getDiscount).toHaveBeenCalledWith(bananaCode);
             expect(promotionService.getDiscount).toHaveBeenCalledWith(potatoCode);

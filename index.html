@@ -3,13 +3,16 @@
     <head>
         <meta charset="utf-8" />
         <title>Webpack App</title>
-        <script src="dist/price-calculator.js"></script>
+        <script src="dist/price-cal.js"></script>
     </head>
     <body>
         <h1>Hello world!</h1>
         <h2>Tip: Check your console</h2>
         <script>
-            priceCalculator.sayHello();
+            const promotionService = new PriceCal.PromotionService();
+            const calculator = new PriceCal.PriceCalculator(promotionService);
+            const price = calculator.calculatePrice([{code: 1, name: 'banana', price: 100000}]);
+            console.log(price);
         </script>
     </body>
 </html>

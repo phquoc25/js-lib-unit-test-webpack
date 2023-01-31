@@ -1,11 +1,17 @@
-export function calculatePrice(products, promotionService) {
-    return products.map((product) => getProductPrice(promotionService, product))
-    .reduce((sum, price) => {
-        return sum + price;
-    }, 0);
-}
+export class PriceCalculator {
+    constructor(promotionService) {
+        this.promotionService = promotionService;
+    }
 
-function getProductPrice(promotionService, product) {
-    const discountOnProduct = promotionService.getDiscount(product.code) * product.price;
-    return product.price - discountOnProduct;
+    getProductPrice(product) {
+        const discountOnProduct = this.promotionService.getDiscount(product.code) * product.price;
+        return product.price - discountOnProduct;
+    }
+
+    calculatePrice(products) {
+        return products.map((product) => this.getProductPrice(product))
+        .reduce((sum, price) => {
+            return sum + price;
+        }, 0);
+    }
 }
